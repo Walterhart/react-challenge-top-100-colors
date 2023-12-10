@@ -20,24 +20,31 @@ export default function App() {
 		Note: colorData and nanoid have already been imported into this file! 
 */
 
-	function ColorCard() {
+	function ColorCard({color, rank}) {
 		return (
-			<div className="color-card" style={{ background: "#34568B" }}>
+			<div className="color-card" style={{ background: `${color}` }}>
 				<p>
-					<span>1.</span> #34568B
+					<span>{rank}.</span> {color}
 				</p>
 			</div>
 		)
 	}
-	
+	const colorElement = colorData.map((color, index)=>{
+		return (
+			<ColorCard 
+				key={nanoid()} 
+				color={color} 
+				rank={index + 1}
+			/>
+		)
+	})
+		
 	return (
 		<div className="wrapper">
 			<Header /> 
 			
 			{/*------Your ColorCard elements below!-----------*/}
-
-				<ColorCard />
-			
+				{colorElement}
 			{/*------Your ColorCard elements above!-----------*/}
 			
 		</div>
